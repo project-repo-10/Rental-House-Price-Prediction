@@ -20,7 +20,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # Sidebar
 st.sidebar.title("Menu")
 app_mode = st.sidebar.selectbox("Choose the app mode", ["Home", "About"])
@@ -33,34 +32,33 @@ if app_mode == "About":
     factors like the number of baths, number of beds, land size, house size, and district.
     """)
 else:
-    #st.subheader("Enter House Details for Price Prediction")
     with st.expander("Enter House Details for Price Prediction", expanded=True):
-            # Inputs for the user
-            district = st.selectbox("Select a District", ["Choose here"] + sorted(known_districts))
-            beds = st.number_input("Number of Beds", min_value=1, max_value=10, value=None)
-            baths = st.number_input("Number of Baths", min_value=1, max_value=10, value=None)
-            house_size = st.number_input("House Size (Square Feet)", min_value=100.0, value=None)
-            land_size = st.number_input("Land Size (Perches)", min_value=1.0, value=None)
+        # Inputs for the user
+        district = st.selectbox("Select a District", ["Choose here"] + sorted(known_districts))
+        beds = st.number_input("Number of Beds", min_value=1, max_value=10, value=None)
+        baths = st.number_input("Number of Baths", min_value=1, max_value=10, value=None)
+        house_size = st.number_input("House Size (Square Feet)", min_value=100.0, value=None)
+        land_size = st.number_input("Land Size (Perches)", min_value=1.0, value=None)
 
-            if st.button("Predict"):
-                if district == "Choose here":
-                    st.warning("Please select a valid district before proceeding.")
-                else:
-                    try:
-                        # Normalize the district name
-                        normalized_district = district.title()
+        if st.button("Predict"):
+            if district == "Choose here":
+                st.warning("Please select a valid district before proceeding.")
+            else:
+                try:
+                    # Normalize the district name
+                    normalized_district = district.title()
 
-                        # Create a DataFrame for the new input
-                        new_data = pd.DataFrame([[baths, beds, land_size, house_size, normalized_district]],
-                                                columns=['Baths', 'Beds', 'Land size', 'House size', 'District'])
+                    # Create a DataFrame for the new input
+                    new_data = pd.DataFrame([[baths, beds, land_size, house_size, normalized_district]],
+                                            columns=['Baths', 'Beds', 'Land size', 'House size', 'District'])
 
-                        # Make the prediction
-                        predicted_price = model.predict(new_data)
+                    # Make the prediction
+                    predicted_price = model.predict(new_data)
 
-                        # Display the result
-                        st.success(f"The predicted monthly rental price is Rs: {predicted_price[0]:,.2f}")
-                    except ValueError as e:
-                        st.error(f"Error: {e}")
+                    # Display the result
+                    st.success(f"The predicted monthly rental price is Rs: {predicted_price[0]:,.2f}")
+                except ValueError as e:
+                    st.error(f"Error: {e}")
 
 # Footer
 st.sidebar.markdown("""
