@@ -73,4 +73,4 @@ st.sidebar.markdown("""
 """)
 
 # Sidebar image
-st.sidebar.image("1.jpg", use_column_width=True)
+st.sidebar.image("logo.jpg", use_column_width=True)
