@@ -12,12 +12,12 @@ known_districts = df['District'].unique().tolist()
 
 # App title
 st.markdown(
-    """
-    <div style='text-align: center;'>
-        <h1>House Rental Price Prediction <br> in Sri Lanka</h1>
-    </div>
-    """,
-    unsafe_allow_html=True
+"""
+<div style='text-align: center;'>
+<h1>House Rental Price Prediction <br> in Sri Lanka</h1>
+</div>
+""",
+unsafe_allow_html=True
 )
 
 # Sidebar
@@ -27,12 +27,26 @@ app_mode = st.sidebar.selectbox("Choose the app mode", ["Home", "About"])
 if app_mode == "About":
     st.subheader("About this App")
     st.write("""
-    This application predicts the monthly rental prices of houses in various districts in Sri Lanka. 
-    It uses a machine learning model trained on historical rental data to estimate prices based on 
+    This application predicts the monthly rental prices of houses in various districts in Sri Lanka.
+    It uses a machine learning model trained on historical rental data to estimate prices based on
     factors like the number of baths, number of beds, land size, house size, and district.
     """)
 else:
-    with st.expander("Enter House Details for Price Prediction", expanded=True):
+    # Create a box using st.container()
+    with st.container():
+        st.subheader("Enter House Details for Price Prediction")
+        
+        # Add a border to the container
+        st.markdown("""
+        <style>
+        .stContainer {
+            border: 2px solid #f0f2f6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         # Inputs for the user
         district = st.selectbox("Select a District", ["Choose here"] + sorted(known_districts))
         beds = st.number_input("Number of Beds", min_value=1, max_value=10, value=None)
