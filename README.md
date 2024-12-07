@@ -1,7 +1,5 @@
 # Sri Lanka House Rental Price Prediction
 
-This application predicts monthly rental prices of houses in various districts across Sri Lanka. The predictions are based on a machine learning model trained on historical data, taking into account key features such as the number of bathrooms, bedrooms, house size, and land size.
-
 ## Key Features
 
 - **District**: Select from the available districts in Sri Lanka.
