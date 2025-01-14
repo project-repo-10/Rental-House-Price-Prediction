@@ -49,13 +49,12 @@ else:
     # Main page
     st.subheader("Enter House Details for Price Prediction")
 
-   # Inputs for the user
-district = st.selectbox("Select a District", ["Choose here"] + sorted(known_districts))
-beds = st.number_input("Number of Beds", min_value=1, max_value=10, step=1, value=None)
-baths = st.number_input("Number of Baths", min_value=1, max_value=10, step=1, value=None)
-house_size = st.number_input("House Size (Square Feet)", min_value=100, step=1, value=None)
-land_size = st.number_input("Land Size (Perches)", min_value=1, step=1, value=None)
-
+    # Inputs for the user
+    district = st.selectbox("Select a District", ["Choose here"] + sorted(known_districts))
+    beds = st.number_input("Number of Beds", min_value=1, max_value=10, value=None)
+    baths = st.number_input("Number of Baths", min_value=1, max_value=10, value=None)
+    house_size = st.number_input("House Size (Square Feet)", min_value=100.0, value=None)
+    land_size = st.number_input("Land Size (Perches)", min_value=1.0, value=None)
 
     if st.button("Predict"):
         if district == "Choose here":
